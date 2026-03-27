@@ -1,0 +1,14 @@
+<svg width="100%" viewBox="0 0 680 121.02" xmlns="http://www.w3.org/2000/svg">
+  <!-- Line 1: handle on left -->
+  <line x1="310" y1="30" x2="322" y2="30" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <circle cx="328" cy="30" r="6" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <line x1="334" y1="30" x2="370" y2="30" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <!-- Line 2: handle in middle-right -->
+  <line x1="310" y1="50" x2="346" y2="50" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <circle cx="352" cy="50" r="6" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <line x1="358" y1="50" x2="370" y2="50" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <!-- Line 3: handle in middle -->
+  <line x1="310" y1="70" x2="330" y2="70" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <circle cx="336" cy="70" r="6" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+  <line x1="342" y1="70" x2="370" y2="70" stroke="#e8c840" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  	<meta charset="UTF-8" />
+  	<title>VideoEnhancer</title>
+  	<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  	<div class="app">
+		<header>
+			<div class="logo">
+				<span>Video<strong>Enhancer</strong></span>
+			</div>
+			<!--
+			<img src="icon.svg" />
+			<div class="video-badge" id="videoBadge"></div>
+			-->
+			<button class="quick-option" data-enhancer="brightness"><img src="bulb.svg" /></button>
+			<button class="quick-option" data-enhancer="contrast"><img src="contrast.svg" /></button>
+			<button class="quick-option"><img src="menu.svg" /></button>
+		</header>
+
+
+		<main>
+
+			<div class="control-group">
+				<div class="label-row">
+					<label for="brightness">
+						<!--
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+						<circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/>
+						<line x1="7" y1="0.5" x2="7" y2="2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="7" y1="11.5" x2="7" y2="13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="0.5" y1="7" x2="2.5" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="11.5" y1="7" x2="13.5" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="2.44" y1="2.44" x2="3.86" y2="3.86" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="10.14" y1="10.14" x2="11.56" y2="11.56" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="11.56" y1="2.44" x2="10.14" y2="3.86" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						<line x1="3.86" y1="10.14" x2="2.44" y2="11.56" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+						</svg>
+						-->
+					</label>
+					<span class="value-display" id="brightnessVal">1.00</span>
+				</div>
+				<div class="slider-track">
+					<input type="range" id="brightness" min="50" max="200" value="100" step="1" />
+					<div class="track-marks">
+						<span>0.5×</span>
+						<span>1×</span>
+						<span>2×</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="control-group">
+				<div class="label-row">
+					<label for="contrast">
+						<!--
+						<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+						<circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/>
+						<path d="M7 1 A6 6 0 0 1 7 13 Z" fill="currentColor"/>
+						</svg>
+						-->
+					</label>
+					<span class="value-display" id="contrastVal">1.00</span>
+				</div>
+				<div class="slider-track">
+				<input type="range" id="contrast" min="50" max="200" value="100" step="1" />
+				<div class="track-marks">
+					<span>0.5×</span>
+					<span>1×</span>
+					<span>2×</span>
+				</div>
+				</div>
+			</div>
+
+		</main>
+
+		<!--
+		<footer>
+			<button id="resetBtn" class="btn-reset">Resetuj</button>
+			<div class="status" id="status"></div>
+		</footer>
+		-->
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
