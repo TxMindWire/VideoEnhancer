@@ -23,45 +23,49 @@
 
 		<main>
 
-			<div class="control-group">
-				<div class="label-row">
-					<label for="brightness">
-						<!--
-						<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-						<circle cx="7" cy="7" r="3" stroke="currentColor" stroke-width="1.4"/>
-						<line x1="7" y1="0.5" x2="7" y2="2.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="7" y1="11.5" x2="7" y2="13.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="0.5" y1="7" x2="2.5" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="11.5" y1="7" x2="13.5" y2="7" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="2.44" y1="2.44" x2="3.86" y2="3.86" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="10.14" y1="10.14" x2="11.56" y2="11.56" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="11.56" y1="2.44" x2="10.14" y2="3.86" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						<line x1="3.86" y1="10.14" x2="2.44" y2="11.56" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
-						</svg>
-						-->
-					</label>
-					<span class="value-display" id="brightnessVal">1.00</span>
-				</div>
-				<div class="slider-track">
-					<input type="range" id="brightness" min="50" max="200" value="100" step="1" />
-					<div class="track-marks">
-						<span>0.5×</span>
-						<span>1×</span>
-						<span>2×</span>
-					</div>
-				</div>
-			</div>
+			
 
 			<div class="control-group">
+				<img src="bulb.svg" />
+				<input type="range" id="brightness" min="50" max="200" value="100" step="1" list="trackList" />
+				<datalist id="trackList">
+					<option value="50"></option>
+					<option value="75"></option>
+					<option value="100"></option>
+					<option value="150"></option>
+					<option value="200"></option>
+				</datalist>
+				
+				<label for="tick">Tip amount:</label>
+<input type="range" list="tickmarks" min="0" max="100" id="tick" name="tick" />
+<datalist id="tickmarks">
+  <option value="0" label="0%"></option>
+  <option value="10" label="Minimum Tip"></option>
+  <option value="20" label="Standard"></option>
+  <option value="30" label="Generous"></option>
+  <option value="50" label="Very Generous"></option>
+</datalist>
+
+				
+				<!--
+					<div class="label-row">
+						<label for="brightness"><img src="bulb.svg" /></label>
+						<span class="value-display" id="brightnessVal">1.00</span>
+					</div>
+					<div class="slider-track">
+						<input type="range" id="brightness" min="50" max="200" value="100" step="1" />
+						<div class="track-marks">
+							<span>0.5×</span>
+							<span>1×</span>
+							<span>2×</span>
+						</div>
+					</div>
+				-->
+			</div>
+			<!--
+			<div class="control-group">
 				<div class="label-row">
-					<label for="contrast">
-						<!--
-						<svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-						<circle cx="7" cy="7" r="6" stroke="currentColor" stroke-width="1.4"/>
-						<path d="M7 1 A6 6 0 0 1 7 13 Z" fill="currentColor"/>
-						</svg>
-						-->
-					</label>
+					<label for="contrast"><img src="contrast.svg" /></label>
 					<span class="value-display" id="contrastVal">1.00</span>
 				</div>
 				<div class="slider-track">
@@ -73,7 +77,7 @@
 				</div>
 				</div>
 			</div>
-
+			-->
 		</main>
 
 		<!--

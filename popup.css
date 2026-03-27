@@ -34,24 +34,6 @@ header { display: flex; align-items: center; justify-content: space-between; pad
 .quick-option.state--active img { opacity: 1;  }
 
 
-
-.video-badge {
-  font-size: 10px;
-  color: var(--muted);
-  background: var(--track-bg);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 2px 8px;
-  letter-spacing: 0.04em;
-  font-family: 'DM Mono', monospace;
-  transition: color 0.3s;
-}
-
-.video-badge.has-videos {
-  color: var(--accent);
-  border-color: rgba(232, 200, 64, 0.3);
-}
-
 /* ── MAIN ── */
 main {
   padding: 16px 16px 12px;
@@ -61,36 +43,10 @@ main {
 }
 
 /* ── CONTROL GROUP ── */
-.control-group {}
+.control-group { display: flex; flex-direction: column; }
+.control-group img { width: 32px; height: 32px; }
 
-.label-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
 
-label {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: default;
-  user-select: none;
-}
-
-label svg {
-  color: var(--muted);
-  transition: color 0.2s;
-}
-
-.control-group:hover label,
-.control-group:hover label svg {
-  color: var(--text);
-}
 
 .value-display {
   font-family: 'Syne', sans-serif;
@@ -189,56 +145,6 @@ input[type=range]::-moz-range-progress {
 
 .track-marks span:first-child { margin-left: 0; }
 .track-marks span:last-child  { margin-right: 0; }
-
-/* ── FOOTER ── */
-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px 14px;
-  border-top: 1px solid var(--border);
-  gap: 10px;
-}
-
-.btn-reset {
-  background: transparent;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
-}
-
-.btn-reset:hover {
-  border-color: var(--accent2);
-  color: var(--accent2);
-  background: rgba(255, 124, 76, 0.06);
-}
-
-.btn-reset:active {
-  transform: scale(0.97);
-}
-
-.status {
-  font-size: 10px;
-  color: var(--muted);
-  letter-spacing: 0.04em;
-  text-align: right;
-  flex: 1;
-  height: 12px;
-  overflow: hidden;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.status.visible {
-  opacity: 1;
-}
 
 /* divider between controls */
 .control-group + .control-group {
