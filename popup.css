@@ -43,25 +43,11 @@ main {
 }
 
 /* ── CONTROL GROUP ── */
-.control-group { display: flex; flex-direction: column; }
-.control-group img { width: 32px; height: 32px; }
+.control-group { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+.control-group img { width: 1.2rem; height: 1.2rem; }
 
-
-
-.value-display {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--text);
-  letter-spacing: -0.03em;
-  min-width: 42px;
-  text-align: right;
-  transition: color 0.2s;
-}
-
-.value-display.changed {
-  color: var(--accent);
-}
+.value-display { font-family: sans-serif; font-size: 12px; color: var(--text); letter-spacing: -0.03em; min-width: 42px; text-align: right; }
+.value-display::before { content: "× "; color: var(--muted) }
 
 /* ── SLIDER ── */
 .slider-track {

@@ -27,40 +27,32 @@
 
 			<div class="control-group">
 				<img src="bulb.svg" />
-				<input type="range" id="brightness" min="50" max="200" value="100" step="1" list="trackList" />
-				<datalist id="trackList">
-					<option value="50"></option>
-					<option value="75"></option>
-					<option value="100"></option>
-					<option value="150"></option>
-					<option value="200"></option>
-				</datalist>
-				
-				<label for="tick">Tip amount:</label>
-<input type="range" list="tickmarks" min="0" max="100" id="tick" name="tick" />
-<datalist id="tickmarks">
-  <option value="0" label="0%"></option>
-  <option value="10" label="Minimum Tip"></option>
-  <option value="20" label="Standard"></option>
-  <option value="30" label="Generous"></option>
-  <option value="50" label="Very Generous"></option>
-</datalist>
+				<div>
+					<input type="range" data-enhancer-value="brightnessValue" min="50" max="200" value="100" step="1" list="trackList" />
+					<datalist id="trackList">
+						<option value="50"></option>
+						<option value="75"></option>
+						<option value="100"></option>
+						<option value="150"></option>
+						<option value="200"></option>
+					</datalist>
+				</div>
+				<span class="value-display" data-enhancer-value-display="brightnessValue">1.00</span>
+			</div>
 
-				
-				<!--
-					<div class="label-row">
-						<label for="brightness"><img src="bulb.svg" /></label>
-						<span class="value-display" id="brightnessVal">1.00</span>
-					</div>
-					<div class="slider-track">
-						<input type="range" id="brightness" min="50" max="200" value="100" step="1" />
-						<div class="track-marks">
-							<span>0.5×</span>
-							<span>1×</span>
-							<span>2×</span>
-						</div>
-					</div>
-				-->
+			<div class="control-group">
+				<img src="contrast.svg" />
+				<div>
+					<input type="range" data-enhancer-value="contrastValue" min="50" max="200" value="100" step="1" list="trackList" />
+					<datalist id="trackList">
+						<option value="50"></option>
+						<option value="75"></option>
+						<option value="100"></option>
+						<option value="150"></option>
+						<option value="200"></option>
+					</datalist>
+				</div>
+				<span class="value-display" data-enhancer-value-display="contrastValue">1.00</span>
 			</div>
 			<!--
 			<div class="control-group">

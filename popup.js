@@ -103,11 +103,14 @@ const VideoEnhancer = {
 	},
 
 	objects: {
-		buttons: document.querySelectorAll('.quick-option[data-enhancer]')
+		buttons: document.querySelectorAll('.quick-option[data-enhancer]'),
+		ranges: document.querySelectorAll('[data-enhancer-value]'),
+		displays: document.querySelectorAll('[data-enhancer-value-display]'),
 	},
 
 	init: function() {
 		this.appendEvents();
+		this.updateDisplay();
 	},
 
 	buttonAction:function(e){
@@ -115,26 +118,43 @@ const VideoEnhancer = {
 	},
 
 	updateDisplay(){
-	
+		
 		this.objects.buttons.forEach(
 			(obj) => obj.classList.toggle("state--active", this.filters[obj.getAttribute("data-enhancer")])
+		);
+
+		this.objects.ranges.forEach(
+			(obj) => obj.value = (this.filters[obj.getAttribute("data-enhancer-value")] * 100) >> 0
+		);
+
+		this.objects.displays.forEach(
+			(obj) => {obj.innerHTML = this.filters[obj.getAttribute("data-enhancer-value-display")].toFixed(2)}
 		);
 	},
 
 	updateFilters(){
 		const payload = this.filters;
+		try {
+			browser.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
+				if (!tab) return;
+				browser.tabs.sendMessage(tab.id, { type: "VIDEO_ENHANCER_APPLY", payload });
+			});
 
-		browser.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
-			if (!tab) return;
-			browser.tabs.sendMessage(tab.id, { type: "VIDEO_ENHANCER_APPLY", payload });
-		});
+		} catch(e){
+			console.warn(e)
+		}
+		
 	},
 
 	saveState() {
-		browser.storage.local.set({
-			brightness:	this.filters.brightness,
-			contrast:	this.filters.contrast,
-		});
+		try {
+			browser.storage.local.set({
+				brightness:	this.filters.brightness,
+				contrast:	this.filters.contrast,
+			});
+		} catch(e) {
+			console.warn(e);
+		}
 	},
 
 	loadState() {
@@ -152,6 +172,20 @@ const VideoEnhancer = {
 
 				const enhancerName = obj.getAttribute("data-enhancer");
 				this.filters[enhancerName] = !this.filters[enhancerName];
+
+				this.updateDisplay();
+				this.updateFilters();
+				this.saveState();
+			});
+
+		});
+
+		this.objects.ranges.forEach((obj)=> {
+
+			obj.addEventListener("input", (e) => {
+
+				const enhancerName = obj.getAttribute("data-enhancer-value");
+				this.filters[enhancerName] = e.target.value * 0.01;
 
 				this.updateDisplay();
 				this.updateFilters();
