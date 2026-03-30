@@ -3,15 +3,16 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:        #0d0d0f;
-  --surface:   #17171b;
-  --border:    #2a2a32;
-  --accent:    #8BC34A;
-  --accent2:   #ff7c4c;
-  --text:      #e8e6e0;
-  --muted:     #6b6870;
-  --track-bg:  #222228;
-  --radius:    10px;
+	--bg:			#0d0d0f;
+	--surface:		#17171b;
+	--border:		#2a2a32;
+	--accent:		#8BC34A;
+	--accent2:		#ff7c4c;
+	--text:			#e8e6e0;
+	--glow:			#4e6d29;
+	--muted:		#6b6870;
+	--track-bg:		#222228;
+	--radius:    10px;
 }
 
 body { width: 300px; background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-size: 13px; overflow: hidden; }
@@ -30,20 +31,19 @@ header { display: flex; align-items: center; justify-content: space-between; pad
 
 .quick-option:hover img {transform: translateY(-10%)}
 
-.quick-option.state--active { background-color: var(--muted);  }
+.quick-option.state--active { background-color: var(--glow);  }
 .quick-option.state--active img { opacity: 1;  }
 
 
 /* ── MAIN ── */
-main {
-  padding: 16px 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+main { overflow: hidden; height: 0; transition: height 0.12s linear; position: relative; }
+main.state--opened { height: 100px; }
 
 /* ── CONTROL GROUP ── */
+.control-wrapper { position: absolute; bottom: 0; width: 100%; padding: 16px 16px 12px;  display: flex; flex-direction: column; gap: 20px; }
 .control-group { display: flex; flex-direction: row; align-items: center; justify-content: space-between; }
+.control-group { opacity: 0.5; }
+.control-group.state--active { opacity: 1; }
 .control-group img { width: 1.2rem; height: 1.2rem; }
 
 .value-display { font-family: sans-serif; font-size: 12px; color: var(--text); letter-spacing: -0.03em; min-width: 42px; text-align: right; }
@@ -51,82 +51,82 @@ main {
 
 /* ── SLIDER ── */
 .slider-track {
-  position: relative;
+	position: relative;
 }
 
 input[type=range] {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 4px;
-  background: var(--track-bg);
-  border-radius: 2px;
-  outline: none;
-  cursor: pointer;
-  border: 1px solid var(--border);
-  transition: border-color 0.2s;
+	-webkit-appearance: none;
+	appearance: none;
+	width: 100%;
+	height: 4px;
+	background: var(--track-bg);
+	border-radius: 2px;
+	outline: none;
+	cursor: pointer;
+	border: 1px solid var(--border);
+	transition: border-color 0.2s;
 }
 
 input[type=range]:hover {
-  border-color: var(--muted);
+	border-color: var(--muted);
 }
 
 input[type=range]:focus {
-  border-color: var(--accent);
+	border-color: var(--accent);
 }
 
 /* Thumb – Firefox */
 input[type=range]::-moz-range-thumb {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
-  box-shadow: 0 0 0 0px rgba(232, 200, 64, 0.3);
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: var(--accent);
+	border: 2px solid var(--bg);
+	cursor: pointer;
+	transition: transform 0.15s, box-shadow 0.15s;
+	box-shadow: 0 0 0 0px rgba(232, 200, 64, 0.3);
 }
 
 input[type=range]::-moz-range-thumb:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0 0 4px rgba(232, 200, 64, 0.2);
+	transform: scale(1.25);
+	box-shadow: 0 0 0 4px rgba(232, 200, 64, 0.2);
 }
 
 /* Thumb – Webkit (Chrome/Edge) */
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--accent);
-  border: 2px solid var(--bg);
-  cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+	-webkit-appearance: none;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	background: var(--accent);
+	border: 2px solid var(--bg);
+	cursor: pointer;
+	transition: transform 0.15s, box-shadow 0.15s;
 }
 
 input[type=range]::-webkit-slider-thumb:hover {
-  transform: scale(1.25);
-  box-shadow: 0 0 0 4px rgba(232, 200, 64, 0.2);
+	transform: scale(1.25);
+	box-shadow: 0 0 0 4px rgba(232, 200, 64, 0.2);
 }
 
 /* Filled track – Firefox */
 input[type=range]::-moz-range-progress {
-  background: var(--accent);
-  height: 4px;
-  border-radius: 2px;
+	background: var(--accent);
+	height: 4px;
+	border-radius: 2px;
 }
 
 .track-marks {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 5px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 5px;
 }
 
 .track-marks span {
-  font-size: 9px;
-  color: var(--border);
-  letter-spacing: 0.02em;
-  font-family: 'DM Mono', monospace;
+	font-size: 9px;
+	color: var(--border);
+	letter-spacing: 0.02em;
+	font-family: 'DM Mono', monospace;
 }
 
 .track-marks span:first-child { margin-left: 0; }
@@ -134,6 +134,6 @@ input[type=range]::-moz-range-progress {
 
 /* divider between controls */
 .control-group + .control-group {
-  padding-top: 2px;
-  border-top: 1px solid var(--border);
+	padding-top: 2px;
+	border-top: 1px solid var(--border);
 }

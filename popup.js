@@ -1,98 +1,3 @@
-/*
-// popup.js
-
-const brightnessSlider = document.getElementById("brightness");
-const contrastSlider   = document.getElementById("contrast");
-const brightnessVal    = document.getElementById("brightnessVal");
-const contrastVal      = document.getElementById("contrastVal");
-const resetBtn         = document.getElementById("resetBtn");
-const status           = document.getElementById("status");
-const videoBadge       = document.getElementById("videoBadge");
-
-// ── helpers ──────────────────────────────────────────────
-function sliderToReal(v) {
-	return (parseInt(v) / 100).toFixed(2);
-}
-
-function isDefault(sliderVal) {
-	return parseInt(sliderVal) === 100;
-}
-
-function updateDisplay() {
-	const b = sliderToReal(brightnessSlider.value);
-	const c = sliderToReal(contrastSlider.value);
-
-	brightnessVal.textContent = b + "×";
-	contrastVal.textContent   = c + "×";
-
-	brightnessVal.classList.toggle("changed", !isDefault(brightnessSlider.value));
-	contrastVal.classList.toggle("changed",   !isDefault(contrastSlider.value));
-}
-
-function showStatus(msg, duration = 1800) {
-	status.textContent = msg;
-	status.classList.add("visible");
-	clearTimeout(status._timer);
-	status._timer = setTimeout(() => status.classList.remove("visible"), duration);
-}
-
-// ── send filters to content script ───────────────────────
-function sendFilters() {
-	const payload = {
-		brightness: parseFloat(sliderToReal(brightnessSlider.value)),
-		contrast:   parseFloat(sliderToReal(contrastSlider.value)),
-	};
-
-	browser.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
-		if (!tab) return;
-		browser.tabs.sendMessage(tab.id, { type: "APPLY_FILTERS", payload })
-			.then(() => showStatus("zastosowano ✓"))
-			.catch(() => showStatus("brak filmów na stronie"));
-	});
-}
-
-function resetFilters() {
-	brightnessSlider.value = 100;
-	contrastSlider.value   = 100;
-	updateDisplay();
-	saveState();
-
-	browser.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
-		if (!tab) return;
-		browser.tabs.sendMessage(tab.id, { type: "RESET_FILTERS" })
-			.then(() => showStatus("zresetowano"))
-			.catch(() => {});
-	});
-}
-
-// ── persist state ─────────────────────────────────────────
-
-
-// ── count videos on page ──────────────────────────────────
-function fetchVideoCount() {
-	browser.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
-		if (!tab) return;
-		browser.tabs.sendMessage(tab.id, { type: "GET_VIDEO_COUNT" })
-			.then(({ count }) => {
-				videoBadge.textContent = count + (count === 1 ? " film" : count < 5 ? " filmy" : " filmów");
-				videoBadge.classList.toggle("has-videos", count > 0);
-			})
-			.catch(() => {
-				videoBadge.textContent = "— filmów";
-			});
-	});
-}
-
-// ── events ───────────────────────────────────────────────
-brightnessSlider.addEventListener("input", () => { updateDisplay(); sendFilters(); saveState(); });
-contrastSlider.addEventListener("input",   () => { updateDisplay(); sendFilters(); saveState(); });
-resetBtn.addEventListener("click", resetFilters);
-
-// ── init ─────────────────────────────────────────────────
-loadState();
-fetchVideoCount();
-*/
-
 const VideoEnhancer = {
 
 	filters: {
@@ -103,6 +8,9 @@ const VideoEnhancer = {
 	},
 
 	objects: {
+		menuButton:  document.querySelector('[data-enhancer-menu-button]'),
+		menuWrapper: document.querySelector('[data-enhancer-wrapper="menu"]'),
+		valueWrapper: document.querySelectorAll('[data-enhancer-group-holder]'),
 		buttons: document.querySelectorAll('.quick-option[data-enhancer]'),
 		ranges: document.querySelectorAll('[data-enhancer-value]'),
 		displays: document.querySelectorAll('[data-enhancer-value-display]'),
@@ -125,6 +33,12 @@ const VideoEnhancer = {
 
 		this.objects.ranges.forEach(
 			(obj) => obj.value = (this.filters[obj.getAttribute("data-enhancer-value")] * 100) >> 0
+		);
+
+		this.objects.valueWrapper.forEach(
+			(obj) => {
+				obj.classList.toggle("state--active", this.filters[obj.getAttribute("data-enhancer-group-holder")])
+			}
 		);
 
 		this.objects.displays.forEach(
@@ -192,6 +106,13 @@ const VideoEnhancer = {
 				this.saveState();
 			});
 
+		});
+
+		
+
+		this.objects.menuButton.addEventListener("click", () => {
+			this.objects.menuButton?.classList.toggle("state--active");
+			this.objects.menuWrapper?.classList.toggle("state--opened");
 		});
 	}
 }

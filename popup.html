@@ -17,42 +17,41 @@
 			-->
 			<button class="quick-option" data-enhancer="brightness"><img src="bulb.svg" /></button>
 			<button class="quick-option" data-enhancer="contrast"><img src="contrast.svg" /></button>
-			<button class="quick-option"><img src="menu.svg" /></button>
+			<button class="quick-option" data-enhancer-menu-button><img src="menu.svg" /></button>
 		</header>
 
 
-		<main>
-
-			
-
-			<div class="control-group">
-				<img src="bulb.svg" />
-				<div>
-					<input type="range" data-enhancer-value="brightnessValue" min="50" max="200" value="100" step="1" list="trackList" />
-					<datalist id="trackList">
-						<option value="50"></option>
-						<option value="75"></option>
-						<option value="100"></option>
-						<option value="150"></option>
-						<option value="200"></option>
-					</datalist>
+		<main data-enhancer-wrapper="menu">
+			<div class="control-wrapper">
+				<div class="control-group" data-enhancer-group-holder="brightness">
+					<img src="bulb.svg" />
+					<div>
+						<input type="range" data-enhancer-value="brightnessValue" min="50" max="200" value="100" step="1" list="trackList" />
+						<datalist id="trackList">
+							<option value="50"></option>
+							<option value="75"></option>
+							<option value="100"></option>
+							<option value="150"></option>
+							<option value="200"></option>
+						</datalist>
+					</div>
+					<span class="value-display" data-enhancer-value-display="brightnessValue">1.00</span>
 				</div>
-				<span class="value-display" data-enhancer-value-display="brightnessValue">1.00</span>
-			</div>
 
-			<div class="control-group">
-				<img src="contrast.svg" />
-				<div>
-					<input type="range" data-enhancer-value="contrastValue" min="50" max="200" value="100" step="1" list="trackList" />
-					<datalist id="trackList">
-						<option value="50"></option>
-						<option value="75"></option>
-						<option value="100"></option>
-						<option value="150"></option>
-						<option value="200"></option>
-					</datalist>
+				<div class="control-group" data-enhancer-group-holder="contrast">
+					<img src="contrast.svg" />
+					<div>
+						<input type="range" data-enhancer-value="contrastValue" min="50" max="200" value="100" step="1" list="trackList" />
+						<datalist id="trackList">
+							<option value="50"></option>
+							<option value="75"></option>
+							<option value="100"></option>
+							<option value="150"></option>
+							<option value="200"></option>
+						</datalist>
+					</div>
+					<span class="value-display" data-enhancer-value-display="contrastValue">1.00</span>
 				</div>
-				<span class="value-display" data-enhancer-value-display="contrastValue">1.00</span>
 			</div>
 			<!--
 			<div class="control-group">
