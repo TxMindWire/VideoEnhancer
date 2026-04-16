@@ -1,15 +1,30 @@
-// content.js – nasłuchuje wiadomości z popup i stosuje filtry CSS do wszystkich <video>
 
-function applyFilters({ brightness, contrast }) {
-  	const videos = document.querySelectorAll("video");
-  	const filter = `brightness(${brightness}) contrast(${contrast})`;
-  	videos.forEach((v) => { v.style.filter = filter; });
+function applyFilters({ brightness, contrast, brightnessValue, contrastValue }) {
+  	const filter = (brightness? "brightness("+brightnessValue+")": "") +
+			(contrast? "contrast("+contrastValue+")": "");
+		document.querySelectorAll("video").forEach((v) => {v.style.filter = filter; });
+}
+
+function applyFromStorage(){
+	browser.storage.local.get(["brightness", "contrast", "brightnessValue", "contrastValue"]).then((data) => {
+		applyFilters(data);
+	});
 }
 
 browser.runtime.onMessage.addListener((msg) => {
 	if (msg.type === "VIDEO_ENHANCER_APPLY") {
-		const filter = (msg.payload.brightness? "brightness("+msg.payload.brightnessValue+")": "") +
-			(msg.payload.contrast? "contrast("+msg.payload.contrastValue+")": "");
-		document.querySelectorAll("video").forEach((v) => {v.style.filter = filter; });
+		applyFilters(msg.payload);
 	}
 });
+
+let checkIteration = 0;
+let checkInterval = window.setInterval(() => {
+	applyFromStorage();
+}, 3000);
+
+
+window.addEventListener('load', () => {
+    applyFromStorage();
+	window.clearInterval(checkInterval);
+});
+

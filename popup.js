@@ -18,6 +18,7 @@ const VideoEnhancer = {
 
 	init: function() {
 		this.appendEvents();
+		this.loadState();
 		this.updateDisplay();
 	},
 
@@ -63,8 +64,10 @@ const VideoEnhancer = {
 	saveState() {
 		try {
 			browser.storage.local.set({
-				brightness:	this.filters.brightness,
-				contrast:	this.filters.contrast,
+				brightness:			this.filters.brightness,
+				contrast:			this.filters.contrast,
+				brightnessValue:	this.filters.brightnessValue,
+				contrastValue:		this.filters.contrastValue,
 			});
 		} catch(e) {
 			console.warn(e);
@@ -72,10 +75,13 @@ const VideoEnhancer = {
 	},
 
 	loadState() {
-		browser.storage.local.get(["brightness", "contrast"]).then((data) => {
+		browser.storage.local.get(["brightness", "contrast", "brightnessValue", "contrastValue"]).then((data) => {
 			if (data.brightness)	this.filters.brightness = data.brightness;
 			if (data.contrast)   	this.filters.contrast =  data.contrast;
-			updateDisplay();
+			if (data.brightnessValue)	this.filters.brightnessValue = data.brightnessValue;
+			if (data.contrastValue)   	this.filters.contrastValue =  data.contrastValue;
+			console.log(data);
+			this.updateDisplay();
 		});
 	},
 
